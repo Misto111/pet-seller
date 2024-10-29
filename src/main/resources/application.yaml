@@ -1,7 +1,7 @@
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/projectX?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/pet-seller?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
     username: ${MYSQL_USER:root}
     password: ${MYSQL_PASSWORD:}
   jpa:
@@ -43,7 +43,7 @@ open.exchange.rates:
   schema: https
   host: openexchangerates.org
   path: /api/latest.json
-  app_id: ${APP_ID:}
+  app_id: ${APP_ID:test}
   symbols: EUR,BGN
   enabled: false
 
