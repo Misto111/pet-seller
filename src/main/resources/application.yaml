@@ -3,7 +3,7 @@ spring:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/projectX?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
     username: ${MYSQL_USER:root}
-    password: ${MYSQL_PASSWORD:12345}
+    password: ${MYSQL_PASSWORD:}
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     defer-datasource-initialization: true
@@ -20,7 +20,7 @@ spring:
       client:
         registration:
           github:
-            client-id: ${GITHUB_CLIENT:d944a848a1a4e9d21445}
+            client-id: ${GITHUB_CLIENT:}
             client-secret: ${GITHUB_SECRET:}
             scope: user:email
 
@@ -29,8 +29,8 @@ spring:
       filter:
         enabled: true
 petsSeller:
- default.admin.pass: ${DEFAULT_ADMIN_PASS:topsecret}
- remember.me.key: ${REMEMBER_ME_KEY:topsecret}
+ default.admin.pass: ${DEFAULT_ADMIN_PASS:}
+ remember.me.key: ${REMEMBER_ME_KEY:}
 
 logging:
   level:
@@ -43,7 +43,7 @@ open.exchange.rates:
   schema: https
   host: openexchangerates.org
   path: /api/latest.json
-  app_id: ${APP_ID:test}
+  app_id: ${APP_ID:}
   symbols: EUR,BGN
   enabled: false
 
@@ -52,8 +52,8 @@ mail:
     petsSeller: "pet@seller.com"
     host: localhost
     port: 1025
-    username: ${MAIL_USER:12345}
-    password: ${MAIL_PASSWORD:12345}
+    username: ${MAIL_USER:}
+    password: ${MAIL_PASSWORD:}
 
 
 
