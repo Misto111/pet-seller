@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="~{fragments/head}">
+</head>
+
+<body>
+
+<div>
+    <nav th:replace="~{fragments/navbar}"></nav>
+</div>
+
+<div class="container">
+    <h2 class="upload-offer">Upload Offer</h2>
+    <form th:method="POST"
+          th:action="@{/offer/add}"
+          th:object="${createOfferDTO}"
+          class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
+        <div class="row">
+
+            <div class="form-group col-md-6 mb-3">
+                <label class="form-color" for="breedId">Breed</label>
+                <select id="breedId"
+                        th:name="breedId"
+                        th:errorclass="is-invalid"
+                        class="form-control">
+                    <option value="">- Select a breed -</option>
+                    <optgroup
+                            th:each="kind: ${kinds}"
+                            th:label="${kind.name()}">
+
+                        <option
+                                th:each="breed : ${kind.breeds()}"
+                                th:text="${breed.name}"
+                                th:value="${breed.id}"
+                                th:selected="*{breedId()} == ${breed.id}">
+                            Breed
+                        </option>
+
+                    </optgroup>
+                </select>
+                <p class="invalid-feedback errors alert alert-danger">
+                    Pet breed is required.
+                </p>
+            </div>
+
+
+            <div class="form-group col-md-6 mb-3">
+                <label for="price" class="form-color">Price</label>
+                <input id="price"
+                       th:field="*{price}"
+                       th:errorclass="is-invalid"
+                       type="number"
+                       class="form-control"
+                       placeholder="Suggested price"/>
+                <p class="invalid-feedback errors alert alert-danger">
+                    Suggested price is required.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="row">
+
+
+            <div class="form-group col-md-6 mb-3">
+                <label class="form-color" for="color">Color</label>
+                <select id="color"
+                        th:field="*{color}"
+                        th:errorclass="is-invalid"
+                        class="form-control">
+                    <option value="">- Select color -</option>
+                    <option th:each="c : ${colors}"
+                            th:text="${c}"
+                            th:value="${c}">
+                    </option>
+                </select>
+                <p class="invalid-feedback errors alert alert-danger">
+                    Color type is required.
+                </p>
+            </div>
+
+
+
+            <div class="form-group col-md-6 mb-3">
+                <label class="form-color" for="gender">Gender</label>
+                <select
+                        id="gender"
+                        th:field="*{gender}"
+                        th:errorclass="is-invalid"
+                        class="form-control">
+                    <option value="">- Select gender -</option>
+                    <option th:each="g : ${genders}"
+                            th:text="${g}"
+                            th:value="${g}"
+                            th:selected="${g} == *{gender}">
+                    </option>
+                </select>
+                <p class="invalid-feedback  errors alert alert-danger">
+                   Gender type is required.
+                </p>
+            </div>
+
+        </div>
+        <div class="row">
+
+            <div class="form-group col-md-6 mb-3">
+                <label for="years" class="form-color">Years</label>
+                <input id="years"
+                       th:errorclass="is-invalid"
+                       th:field="*{years}"
+                       type="number"
+                       class="form-control"
+                       placeholder="Years"/>
+                <p th:if="${#fields.hasErrors('years')}"
+                   class="errors alert alert-danger"
+                   th:errors="*{years}">
+                </p>
+
+            </div>
+
+            <div class="form-group col-md-6 mb-3">
+                <label for="weight" class="form-color">Weight</label>
+                <input id="weight"
+                       th:errorclass="is-invalid"
+                       th:field="*{weight}"
+                       type="number"
+                       class="form-control"
+                       placeholder="Weight in kilograms"/>
+                <p class="invalid-feedback errors alert alert-danger">
+                    Weight in kilograms is required.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+            <label class="form-color" for="description">Description</label>
+            <textarea id="description"
+                      th:field="*{description}"
+                      th:errorclass="is-invalid"
+                      type="textarea"
+                      class="form-control"
+                      rows="3"
+                      placeholder="Description">
+            </textarea>
+            <p class="invalid-feedback errors alert alert-danger">
+                Description is required.
+            </p>
+        </div>
+
+        <div class="form-group">
+            <label class="form-color" for="imageUrl">Image URL</label>
+            <input id="imageUrl"
+                   th:field="*{imageUrl}"
+                   th:errorclass="is-invalid"
+                   type="url" class="form-control"
+                   placeholder="Put pet image URL here">
+            <p class="invalid-feedback errors alert alert-danger">
+                Pet image URL is required.
+            </p>
+        </div>
+
+
+        <div class="row justify-content-center"> <!-- Добавен клас за центриране -->
+            <div class="col-md-4"> <!-- Премахване на div с клас button-holder -->
+                    <input type="submit" class="btn btn-info btn-lg w-100" value="Submit Offer"/>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div>
+    <footer> </footer>
+</div>
+
+</body>
+</html>

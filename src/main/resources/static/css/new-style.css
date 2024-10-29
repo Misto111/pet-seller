@@ -1,0 +1,274 @@
+/* Основни стилове от стария CSS */
+body {
+    background-image: url('/images/207.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #464646;
+    height: 100vh; /* Уверяваме се, че body заема 100% от височината на екрана */
+    margin: 0; /* Премахваме стандартното разстояние на body */
+}
+
+.custom-navbar {
+    background-color: rgba(52, 58, 64, 0.8) !important; /* Пробвайте с !important */
+}
+
+.navbar .logo {
+    max-height: 50px;
+    padding-right: 100px;
+}
+
+.container-nonFluid {
+    padding-top: 90px;
+    color: black;
+}
+
+/* Аудио контрол */
+.audio {
+    margin-top: -3rem;
+    margin-left: 7rem;
+    width: 100px;
+    height: 20px;
+}
+
+.container, .container-fluid {
+    padding-top: 90px;
+    color: black;
+}
+
+/* Прозрачност и стилизация на основния текст */
+.bg-text {
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    font-weight: bold;
+    border: 3px solid #f1f1f1;
+    z-index: 2;
+    width: 80%;
+    padding: 20px;
+    text-align: center;
+}
+
+.brand-section, .card.offer, .offer-details .list-group-item, form.main-form {
+    background-image: linear-gradient(to bottom right, rgba(220, 220, 220, 1.5), rgba(255, 255, 255, 1.5));
+}
+
+.card-img-top-wrapper {
+    height: 150px;
+    overflow: hidden;
+}
+
+form.main-form {
+    padding: 25px; /* Увеличено вътрешно разстояние за формите */
+    border-radius: 20px; /* Закръглени ъгли на формите */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* По-добра сянка */
+}
+
+/* Заглавия на формата */
+h2 {
+    color: white; /* Бял цвят за текст */
+    margin-bottom: 20px; /* Разстояние под заглавието */
+    text-align: center; /* Центрирано подравняване */
+}
+
+/* Стилове за входните полета */
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    border: 1px solid #ced4da; /* Светло сив бордюр */
+    border-radius: 5px; /* Закръглени ъгли */
+    padding: 10px; /* Вътрешно разстояние */
+    width: 100%; /* Заема 100% ширина */
+    margin-bottom: 15px; /* Разстояние между полетата */
+    transition: border-color 0.3s; /* Гладка промяна на цвета на бордюра */
+}
+
+/* Фокус ефект на входните полета */
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus {
+    border-color: #007bff; /* Син цвят при фокус */
+    outline: none; /* Премахва стандартния контур */
+}
+
+/* Стил за чекбокса за Remember Me */
+.form-group {
+    margin-bottom: 20px; /* Разстояние между формовите групи */
+}
+
+/* Стилове за Remember Me чекбокса */
+.form-group input[type="checkbox"] {
+    width: auto; /* Автоматична ширина */
+    margin-right: 10px; /* Разстояние вдясно */
+}
+
+/* Стил за Remember Me текст */
+label[for="rememberme"] {
+    color: #fff; /* Бял текст */
+}
+
+/* Стилове за бутоните */
+button[type="submit"] {
+    background-color: #007bff; /* Син фон */
+    color: white; /* Бял текст */
+    border: none; /* Без бордюр */
+    padding: 10px 20px; /* Вътрешно разстояние */
+    border-radius: 5px; /* Закръглени ъгли */
+    cursor: pointer; /* Курсор на ръка */
+    transition: background-color 0.3s; /* Гладка промяна на фона при ховър */
+    width: 100%; /* Заема 100% ширина */
+}
+
+/* Ховър ефект за бутоните */
+button[type="submit"]:hover {
+    background-color: #0056b3; /* По-тъмен син при ховър */
+}
+
+/* Стил за линка за GitHub */
+.container a.btn {
+    display: block; /* Заема цял ред */
+    text-align: center; /* Центрирано подравняване */
+    margin-top: 15px; /* Разстояние над линка */
+    border-radius: 5px; /* Закръглени ъгли */
+    padding: 10px; /* Вътрешно разстояние */
+}
+
+/* Стилове за GitHub бутона */
+.container a.btn-outline-primary {
+    color: #007bff; /* Син текст */
+    border-color: #007bff; /* Син бордюр */
+}
+
+/* Ховър ефект за GitHub бутона */
+.container a.btn-outline-primary:hover {
+    background-color: #007bff; /* Син фон при ховър */
+    color: white; /* Бял текст при ховър */
+}
+
+/* Мобилно меню с checkbox контрол */
+.navbar-toggler-checkbox {
+    display: none;
+}
+
+/* Показване на менюто при избран checkbox */
+.navbar-toggler-checkbox:checked ~ .collapse {
+    display: block !important;
+}
+
+.collapse {
+    display: none;
+}
+
+/* Останалите навигационни стилове */
+.navbar {
+    background-color: #343a40;
+}
+
+.navbar-nav .nav-link {
+    color: white;
+    font-size: 1rem;
+    padding: 10px;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ffc107;
+}
+
+.form-color {
+    color: mediumblue;;
+    padding: 0.5rem;
+}
+
+.highlight-title {
+    color: white; /* Цвят на текста */
+    background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачен черен фон */
+    padding: 10px; /* Вътрешно разстояние */
+    border-radius: 5px; /* Закръглени ъгли */
+    text-align: center; /* Центрирано подравняване на текста */
+    font-size: 2em; /* Увеличен размер на шрифта */
+    margin-bottom: 20px; /* Разстояние под заглавието */
+    max-width: 150px; /* Максимална ширина на заглавието */
+    margin-left: auto; /* Центрирано подравняване отляво */
+    margin-right: auto; /* Центрирано подравняване отдясно */
+}
+
+.accessories {
+    color: white; /* Цвят на текста */
+    background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачен черен фон */
+    padding: 10px; /* Вътрешно разстояние */
+    border-radius: 5px; /* Закръглени ъгли */
+    text-align: center; /* Центрирано подравняване на текста */
+    font-size: 2em; /* Увеличен размер на шрифта */
+    margin-bottom: 20px; /* Разстояние под заглавието */
+    max-width: 200px; /* Максимална ширина на заглавието */
+    margin-left: auto; /* Центрирано подравняване отляво */
+    margin-right: auto; /* Центрирано подравняване отдясно */
+}
+.adds {
+    color: white; /* Цвят на текста */
+    background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачен черен фон */
+    padding: 10px; /* Вътрешно разстояние */
+    border-radius: 5px; /* Закръглени ъгли */
+    text-align: center; /* Центрирано подравняване на текста */
+    font-size: 2em; /* Увеличен размер на шрифта */
+    margin-bottom: 20px; /* Разстояние под заглавието */
+    max-width: 100px; /* Максимална ширина на заглавието */
+    margin-left: auto; /* Центрирано подравняване отляво */
+    margin-right: auto; /* Центрирано подравняване отдясно */
+}
+.upload-offer {
+    color: white; /* Цвят на текста */
+    background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачен черен фон */
+    padding: 10px; /* Вътрешно разстояние */
+    border-radius: 5px; /* Закръглени ъгли */
+    text-align: center; /* Центрирано подравняване на текста */
+    font-size: 2em; /* Увеличен размер на шрифта */
+    margin-bottom: 20px; /* Разстояние под заглавието */
+    max-width: 220px; /* Максимална ширина на заглавието */
+    margin-left: auto; /* Центрирано подравняване отляво */
+    margin-right: auto; /* Центрирано подравняване отдясно */
+}
+.welcome {
+    color: white; /* Цвят на текста */
+    background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачен черен фон */
+    padding: 10px; /* Вътрешно разстояние */
+    border-radius: 5px; /* Закръглени ъгли */
+    text-align: center; /* Центрирано подравняване на текста */
+    font-size: 2em; /* Увеличен размер на шрифта */
+    margin-bottom: 20px; /* Разстояние под заглавието */
+    max-width: 350px; /* Максимална ширина на заглавието */
+    margin-left: auto; /* Центрирано подравняване отляво */
+    margin-right: auto; /* Центрирано подравняване отдясно */
+}
+.details {
+    color: white; /* Цвят на текста */
+    background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачен черен фон */
+    padding: 10px; /* Вътрешно разстояние */
+    border-radius: 5px; /* Закръглени ъгли */
+    text-align: center; /* Центрирано подравняване на текста */
+    font-size: 2em; /* Увеличен размер на шрифта */
+    margin-bottom: 20px; /* Разстояние под заглавието */
+    max-width: 150px; /* Максимална ширина на заглавието */
+    margin-left: auto; /* Центрирано подравняване отляво */
+    margin-right: auto; /* Центрирано подравняване отдясно */
+}
+
+
+.form-group .form-color {
+    color: black; /* Цвета, който желаеш */
+    font-weight: bold;
+}
+
+.email .form-color {
+    color: black; /* Цвета, който желаеш */
+    font-weight: bold;
+}
+.card-title {
+    text-align: center;
+    color: mediumblue;
+}
+
+ .details-info  {
+    color: black; !important;
+     text-align: center;
+}
