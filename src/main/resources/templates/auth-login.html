@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head th:replace="~{fragments/head}">
 </head>
 <body>
@@ -37,7 +37,7 @@
             <input id="rememberme"
                    name="rememberme"
                    type="checkbox"
-                   class="form-control d-inline" /> <!-- d-inline за подравняване -->
+                   class="form-control d-inline"/> <!-- d-inline за подравняване -->
         </div>
 
         <p th:if="${bad_credentials}" class="errors alert alert-danger">
@@ -46,9 +46,10 @@
 
         <div class="row justify-content-center"> <!-- Добавен клас за центриране -->
             <div class="col-md-4">
-                    <input type="submit" class="btn btn-info btn-lg w-100" value="Login"/>
-                </div>
+                <div class="button-holder d-flex">
+                <input type="submit" class="btn btn-info btn-lg w-100" value="Login"/>
             </div>
+        </div>
     </form>
 </div>
 
@@ -61,7 +62,8 @@
 </div>
 
 <div>
-    <footer> </footer>
+    <footer></footer>
+
 </div>
 </body>
 </html>

@@ -15,8 +15,13 @@ body {
 }
 
 .navbar .logo {
-    max-height: 50px;
-    padding-right: 100px;
+    max-height: 50px;              /* Максимална височина на логото */
+    border-radius: 10px;           /* Заобляне на всички ъгли на логото */
+    object-fit: cover;             /* Запазване на пропорцията на изображението */
+}
+
+.navbar {
+    padding: 1px 1px;           /* Padding за навигационния бар */
 }
 
 .container-nonFluid {
@@ -271,4 +276,30 @@ button[type="submit"]:hover {
  .details-info  {
     color: black; !important;
      text-align: center;
+}
+
+.custom-button {
+    background-color: #007bff; /* Син фон */
+    color: white; /* Бял текст */
+    padding: 10px 20px; /* Вътрешно разстояние */
+    border-radius: 5px; /* Закръглени ъгли */
+    transition: background-color 0.3s, transform 0.2s; /* Гладка промяна на фона и анимация */
+    text-decoration: none; /* Без подчертаване на текста */
+}
+
+.custom-button:hover {
+    background-color: #0056b3; /* По-тъмен син фон при ховър */
+    transform: scale(1.05); /* Леко увеличаване на размера при ховър */
+}
+
+.pagination {
+    margin-top: 20px; /* Разстояние над бутоните */
+}
+
+.pagination .page-item {
+    margin: 0 10px; /* Разстояние между бутоните */
+}
+
+.logged-user {
+    color: white;
 }

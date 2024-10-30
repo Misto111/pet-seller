@@ -1,0 +1,27 @@
+/* Navbar.css */
+
+.navbar {
+    background-color: #333;  /* Тъмен фон за навигацията */
+    padding: 1rem;           /* Разстояние около навигацията */
+}
+
+.navbar ul {
+    list-style-type: none;   /* Премахва маркерите от списъка */
+    margin: 0;               /* Премахва маргина на списъка */
+    padding: 0;              /* Премахва падинга на списъка */
+    display: flex;           /* Flexbox за разпределение на елементите */
+}
+
+.navbar li {
+    margin-right: 2rem;      /* Разстояние между елементите */
+}
+
+.navbar a {
+    color: white;            /* Цвят на текста */
+    text-decoration: none;   /* Премахва подчертаването на линковете */
+    font-weight: bold;       /* Дебел текст */
+}
+
+.navbar a:hover {
+    text-decoration: underline; /* Подчертаване при задържане на мишката */
+}

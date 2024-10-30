@@ -16,7 +16,7 @@
         <div
                 th:each="accesory: ${accessories.getContent()}"
                 th:object="${accesory}"
-                class="offer card col-sm-6 col-md-3  col-lg-2 m-1 p-0">
+                class="offer card col-sm-6 col-md-3 col-lg-2 m-1 p-0">
             <div class="card-img-top-wrapper">
                 <img class="card-img-top" th:src="*{imageUrl}" alt="Accessory image">
             </div>
@@ -40,15 +40,15 @@
 
     <div class="container mt-5">
         <nav aria-label="Page navigation">
-            <ul class="pagination">
-
-
-
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-
-
-
+            <ul class="pagination justify-content-center">
+                <li class="page-item" th:classappend="${accessories.isFirst() ? 'disabled' : ''}">
+                    <a th:if="${accessories.isFirst()}" class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">Previous</span></a>
+                    <a th:unless="${accessories.isFirst()}" class="page-link" th:href="@{/accessories/all(size=${accessories.getSize()}, page=${accessories.getNumber() - 1})}" aria-label="Previous"><span aria-hidden="true">Previous</span></a>
+                </li>
+                <li class="page-item" th:classappend="${accessories.isLast() ? 'disabled' : ''}">
+                    <a th:if="${accessories.isLast()}" class="page-link" href="#" aria-label="Next"><span aria-hidden="true">Next</span></a>
+                    <a th:unless="${accessories.isLast()}" class="page-link" th:href="@{/accessories/all(size=${accessories.getSize()}, page=${accessories.getNumber() + 1})}" aria-label="Next"><span aria-hidden="true">Next</span></a>
+                </li>
             </ul>
         </nav>
     </div>
