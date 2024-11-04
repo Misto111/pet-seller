@@ -58,6 +58,7 @@ public class UserServiceImpl implements UserService {
   public Authentication login(String email) {
     UserDetails userDetails = petSellerUserDetailsService.loadUserByUsername(email);
 
+
     Authentication auth = new UsernamePasswordAuthenticationToken(
         userDetails,
         userDetails.getPassword(),

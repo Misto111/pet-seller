@@ -3,8 +3,10 @@ package com.project.petSeller.web;
 import com.project.petSeller.model.dto.UserRegistrationDTO;
 import com.project.petSeller.service.UserService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -31,7 +33,7 @@ public class UserRegistrationController {
     public String register(UserRegistrationDTO userRegistrationDTO) {
         userService.registerUser(userRegistrationDTO);
 
-        return "redirect:/";
+        return "redirect:auth-login";
 
 
     }

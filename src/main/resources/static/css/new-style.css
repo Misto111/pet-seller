@@ -1,4 +1,4 @@
-/* Основни стилове от стария CSS */
+/* Основни стилове за body */
 body {
     background-image: url('/images/207.jpg');
     background-position: center;
@@ -10,6 +10,7 @@ body {
     margin: 0; /* Премахваме стандартното разстояние на body */
 }
 
+/* Стилизация на навигационния бар */
 .custom-navbar {
     background-color: rgba(52, 58, 64, 0.8) !important; /* Пробвайте с !important */
 }
@@ -24,6 +25,7 @@ body {
     padding: 1px 1px;           /* Padding за навигационния бар */
 }
 
+/* Контейнери и текст */
 .container-nonFluid {
     padding-top: 90px;
     color: black;
@@ -54,6 +56,7 @@ body {
     text-align: center;
 }
 
+/* Стилове за формите */
 .brand-section, .card.offer, .offer-details .list-group-item, form.main-form {
     background-image: linear-gradient(to bottom right, rgba(220, 220, 220, 1.5), rgba(255, 255, 255, 1.5));
 }
@@ -184,6 +187,7 @@ button[type="submit"]:hover {
     padding: 0.5rem;
 }
 
+/* highlight-title h2 style start*/
 .highlight-title {
     color: white; /* Цвят на текста */
     background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачен черен фон */
@@ -196,7 +200,9 @@ button[type="submit"]:hover {
     margin-left: auto; /* Центрирано подравняване отляво */
     margin-right: auto; /* Центрирано подравняване отдясно */
 }
+/* highlight-title h2 style end*/
 
+/* accessories h2 style start*/
 .accessories {
     color: white; /* Цвят на текста */
     background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачен черен фон */
@@ -209,6 +215,9 @@ button[type="submit"]:hover {
     margin-left: auto; /* Центрирано подравняване отляво */
     margin-right: auto; /* Центрирано подравняване отдясно */
 }
+/* accessories h2 style end*/
+
+/* adds h2 style start*/
 .adds {
     color: white; /* Цвят на текста */
     background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачен черен фон */
@@ -221,6 +230,9 @@ button[type="submit"]:hover {
     margin-left: auto; /* Центрирано подравняване отляво */
     margin-right: auto; /* Центрирано подравняване отдясно */
 }
+/* adds h2 style end*/
+
+/* upload-offer h2 style start*/
 .upload-offer {
     color: white; /* Цвят на текста */
     background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачен черен фон */
@@ -233,6 +245,9 @@ button[type="submit"]:hover {
     margin-left: auto; /* Центрирано подравняване отляво */
     margin-right: auto; /* Центрирано подравняване отдясно */
 }
+/* upload-offer h2 style end*/
+
+/* welcome h2 style start*/
 .welcome {
     color: white; /* Цвят на текста */
     background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачен черен фон */
@@ -245,6 +260,9 @@ button[type="submit"]:hover {
     margin-left: auto; /* Центрирано подравняване отляво */
     margin-right: auto; /* Центрирано подравняване отдясно */
 }
+/* welcome h2 style end*/
+
+/* details h2 style start*/
 .details {
     color: white; /* Цвят на текста */
     background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачен черен фон */
@@ -257,6 +275,22 @@ button[type="submit"]:hover {
     margin-left: auto; /* Центрирано подравняване отляво */
     margin-right: auto; /* Центрирано подравняване отдясно */
 }
+/* details h2 style end*/
+
+/* cart h2 style start*/
+.cart {
+    color: white; /* Цвят на текста */
+    background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачен черен фон */
+    padding: 10px; /* Вътрешно разстояние */
+    border-radius: 5px; /* Закръглени ъгли */
+    text-align: center; /* Центрирано подравняване на текста */
+    font-size: 2em; /* Увеличен размер на шрифта */
+    margin-bottom: 20px; /* Разстояние под заглавието */
+    max-width: 180px; /* Максимална ширина на заглавието */
+    margin-left: auto; /* Центрирано подравняване отляво */
+    margin-right: auto; /* Центрирано подравняване отдясно */
+}
+/* cart h2 style end*/
 
 
 .form-group .form-color {
@@ -273,9 +307,9 @@ button[type="submit"]:hover {
     color: mediumblue;
 }
 
- .details-info  {
+.details-info  {
     color: black; !important;
-     text-align: center;
+    text-align: center;
 }
 
 .custom-button {
@@ -303,3 +337,27 @@ button[type="submit"]:hover {
 .logged-user {
     color: white;
 }
+
+.form-color {
+    color: mediumblue !important;
+    padding: 0.5rem;
+}
+
+
+
+
+/* Стил за Total старт */
+.total-item {
+    text-align: center;
+    background-color: rgb(217 217 217);
+    border: 1px solid #fffdfd;
+    border-radius: 5px;
+    padding: 5px;
+    margin-block: 10px;
+    margin-top: 10px;
+    max-width: 220px;
+    float: right;
+}
+
+/* Стил за Total край */
+

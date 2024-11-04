@@ -2,7 +2,9 @@ package com.project.petSeller.web;
 
 import com.project.petSeller.model.entity.AccessoryEntity;
 import com.project.petSeller.model.entity.Cart;
+import com.project.petSeller.model.entity.OfferEntity;
 import com.project.petSeller.repository.AccessoryRepository;
+import com.project.petSeller.repository.OfferRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +24,9 @@ public class CartController {
 
     @Autowired
     private AccessoryRepository accessoryRepository;
+
+    @Autowired
+    private OfferRepository offerRepository;
 
     // Get or create a cart in the session
     public Cart getCart() {
@@ -59,9 +64,36 @@ public class CartController {
         return "cart-view"; // Return cart view
     }
 
-    @GetMapping("/cart/add")
-    public String cartView() {
-
-        return "cart-view";
+    @PostMapping("/cart/addOffer")
+    public String addOfferToCart(@RequestParam("uuid") UUID offerUuid, Model model, Principal principal) {
+        if (principal == null) {
+            model.addAttribute("errorMessage", "Please log in to add items to your cart.");
+            return "redirect:/users/login"; // Redirect to login page
         }
+
+        // Check if UUID is valid
+        if (offerUuid == null) {
+            model.addAttribute("errorMessage", "Offer not found.");
+            model.addAttribute("cart", getCart());
+            return "cart-view"; // Return the cart view
+        }
+
+        // Retrieve the offer by UUID
+        OfferEntity offer = offerRepository.findByUuid(offerUuid).orElse(null);
+        if (offer != null) {
+            getCart().addOffer(offer);
+        } else {
+            model.addAttribute("errorMessage", "Offer not found.");
+        }
+
+        model.addAttribute("cart", getCart());
+        return "cart-view"; // Return cart view
+    }
+
+
+    @GetMapping("/cart")
+    public String cartView(Model model) {
+        model.addAttribute("cart", getCart()); // Добави количката в модела
+        return "cart-view"; // Върни шаблона
+    }
     }

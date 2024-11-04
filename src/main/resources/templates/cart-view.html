@@ -9,26 +9,37 @@
 </div>
 
 <div class="container mt-4">
-    <h2>Your Cart</h2>
+    <h2 class="cart">Your Cart</h2>
 
     <!-- Check if the cart is null or empty -->
-    <div th:if="${cart == null || cart.accessories.isEmpty()}">
-        <p>Your cart is empty.</p>
-    </div>
+    <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center"
+            th:if="${cart == null || (cart.accessories.isEmpty() && cart.offers.isEmpty())}">
+            <p><h5>Your cart is empty.</h5></p>
+        </li>
+    </ul>
 
     <!-- Display the items in the cart -->
-    <div th:unless="${cart == null || cart.accessories.isEmpty()}">
+    <div th:unless="${cart == null || (cart.accessories.isEmpty() && cart.offers.isEmpty())}">
         <ul class="list-group">
             <li class="list-group-item d-flex justify-content-between align-items-center"
                 th:each="accessory : ${cart.accessories}">
-                <span th:text="${accessory.description}">Accessory Description</span>
+                <span th:text="${accessory.accessoryModel.getName()}">Accessory Description</span>
                 <span th:text="${accessory.price} + ' $'">Price</span>
+            </li>
+
+            <!-- Display offers -->
+            <li class="list-group-item d-flex justify-content-between align-items-center"
+                th:each="offer : ${cart.offers}">
+                <span th:text="${offer.breed.getName()}">Offer Description</span>
+                <span th:text="${offer.price} + ' $'">Price</span>
             </li>
         </ul>
 
         <!-- Display total price -->
-        <div class="mt-3">
-            <strong>Total:</strong> <span th:text="${cart.totalPrice} + ' $'">0</span>
+        <div class="list-group-item total-item">
+            <strong>Total:</strong>
+            <span class="form-color product-price" th:text="${cart.getTotalPrice()} + ' $'">0</span>
         </div>
 
         <!-- Form for confirming the order -->
