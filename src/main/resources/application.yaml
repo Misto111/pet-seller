@@ -9,7 +9,7 @@ spring:
     defer-datasource-initialization: true
     properties:
       hibernate:
-        format_sql: true
+        format_sql: false
     hibernate:
       ddl-auto: update
   sql:
@@ -24,10 +24,6 @@ spring:
             client-secret: ${GITHUB_SECRET}
             scope: user:email
 
-  mvc:
-    hiddenmethod:
-      filter:
-        enabled: true
 petsSeller:
  default.admin.pass: ${DEFAULT_ADMIN_PASS}
  remember.me.key: ${REMEMBER_ME_KEY}
