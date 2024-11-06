@@ -1,24 +1,24 @@
 package com.project.petSeller.web;
 
-import com.project.petSeller.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+@RequestMapping("/users")
 @Controller
 public class UserLoginController {
 
 
-    @GetMapping("/users/login")
+    @GetMapping("/login")
     public String login() {
 
-        return "auth-login";
+        return "login";
     }
 
-    @PostMapping("/users/login-error")
+    @PostMapping("/login-error")
     public String onFailure(
             @ModelAttribute("email") String email,
             Model model) {
@@ -26,6 +26,6 @@ public class UserLoginController {
         model.addAttribute("email", email);
         model.addAttribute("bad_credentials", "true");
 
-        return "auth-login";
+        return "login";
     }
 }

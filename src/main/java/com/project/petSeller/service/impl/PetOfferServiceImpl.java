@@ -1,15 +1,15 @@
 package com.project.petSeller.service.impl;
 
 import com.project.petSeller.model.dto.CreateOfferDTO;
-import com.project.petSeller.model.dto.OfferDetailDTO;
-import com.project.petSeller.model.dto.OfferSummaryDTO;
+import com.project.petSeller.model.dto.PetOfferDetailDTO;
+import com.project.petSeller.model.dto.PetOfferSummaryDTO;
 import com.project.petSeller.model.entity.*;
 import com.project.petSeller.model.enums.UserRoleEnum;
 import com.project.petSeller.repository.BreedRepository;
-import com.project.petSeller.repository.OfferRepository;
+import com.project.petSeller.repository.PetOfferRepository;
 import com.project.petSeller.repository.UserRepository;
 import com.project.petSeller.service.MonitoringService;
-import com.project.petSeller.service.OfferService;
+import com.project.petSeller.service.PetOfferService;
 import com.project.petSeller.service.aop.WarnIfExecutionExceeds;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
@@ -23,18 +23,18 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class OfferServiceImpl implements OfferService {
+public class PetOfferServiceImpl implements PetOfferService {
 
-    private final OfferRepository offerRepository;
+    private final PetOfferRepository offerRepository;
     private final BreedRepository breedRepository;
     private final MonitoringService monitoringService;
     private final UserRepository userRepository;
 
 
-    public OfferServiceImpl(OfferRepository offerRepository,
-                            BreedRepository breedRepository,
-                            MonitoringService monitoringService,
-                            UserRepository userRepository) {
+    public PetOfferServiceImpl(PetOfferRepository offerRepository,
+                               BreedRepository breedRepository,
+                               MonitoringService monitoringService,
+                               UserRepository userRepository) {
         this.offerRepository = offerRepository;
         this.breedRepository = breedRepository;
         this.monitoringService = monitoringService;
@@ -46,7 +46,7 @@ public class OfferServiceImpl implements OfferService {
 
 
         // когато не сме имплементирали един метод можем да хвърляме exception
-        OfferEntity newOffer = map(createOfferDTO);
+        PetOfferEntity newOffer = map(createOfferDTO);
         BreedEntity breedEntity = breedRepository.findById(createOfferDTO.breedId()).orElseThrow(() ->
                 new IllegalArgumentException("Breed with id " + createOfferDTO.breedId() + " not found!"));
 
@@ -65,13 +65,13 @@ public class OfferServiceImpl implements OfferService {
     )
 
     @Override
-    public Page<OfferSummaryDTO> getAllOffers(Pageable pageable) {
+    public Page<PetOfferSummaryDTO> getAllOffers(Pageable pageable) {
 
         System.out.println("IN GET ALL OFFERS");
 
        return  offerRepository
                 .findAll(pageable)
-                .map(OfferServiceImpl::mapAsSummary);
+                .map(PetOfferServiceImpl::mapAsSummary);
 
        }
     @WarnIfExecutionExceeds(
@@ -80,7 +80,7 @@ public class OfferServiceImpl implements OfferService {
 
 
     @Override
-   public Optional<OfferDetailDTO> getOfferDetail(UUID offerUUID, UserDetails viewer) {
+   public Optional<PetOfferDetailDTO> getOfferDetail(UUID offerUUID, UserDetails viewer) {
         return offerRepository
                 .findByUuid(offerUUID)
                 .map(o -> this.mapAsDetails(o, viewer));
@@ -94,8 +94,8 @@ public class OfferServiceImpl implements OfferService {
          offerRepository.deleteByUuid(offerUUID);
     }
 
-    private  OfferDetailDTO mapAsDetails(OfferEntity offerEntity, UserDetails viewer) {
-        return new OfferDetailDTO(
+    private PetOfferDetailDTO mapAsDetails(PetOfferEntity offerEntity, UserDetails viewer) {
+        return new PetOfferDetailDTO(
                 offerEntity.getUuid().toString(),
                 offerEntity.getDescription(),
                 offerEntity.getBreed().getKind().getName(),
@@ -124,7 +124,7 @@ public class OfferServiceImpl implements OfferService {
 
     }
 
-    private boolean isOwner(OfferEntity offerEntity, String userName) {
+    private boolean isOwner(PetOfferEntity offerEntity, String userName) {
 
         if (offerEntity == null || userName == null) {
             return false;
@@ -153,8 +153,8 @@ public class OfferServiceImpl implements OfferService {
     }
 
 
-    private static OfferSummaryDTO mapAsSummary(OfferEntity offerEntity) {
-        return new OfferSummaryDTO(
+    private static PetOfferSummaryDTO mapAsSummary(PetOfferEntity offerEntity) {
+        return new PetOfferSummaryDTO(
                 offerEntity.getUuid().toString(),
                 offerEntity.getBreed().getKind().getName(),
                 offerEntity.getBreed().getName(),
@@ -168,8 +168,8 @@ public class OfferServiceImpl implements OfferService {
     }
 
 
-    private static OfferEntity map(CreateOfferDTO createOfferDTO) {
-        return new OfferEntity()
+    private static PetOfferEntity map(CreateOfferDTO createOfferDTO) {
+        return new PetOfferEntity()
                 .setUuid(UUID.randomUUID())
                 .setDescription(createOfferDTO.description())
                 .setColor(createOfferDTO.color())

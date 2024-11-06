@@ -1,10 +1,11 @@
 package com.project.petSeller.model.entity;
-
 import jakarta.persistence.*;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component("userEntity")
 @Entity
 @Table(name = "users")
 public class UserEntity extends BaseEntity{
@@ -80,4 +81,15 @@ public class UserEntity extends BaseEntity{
         this.roles = roles;
         return this;
     }
+//    public String getFullName() {
+//        StringBuilder stringBuilder = new StringBuilder();
+//
+//        if (firstName != null) {
+//            stringBuilder.append(firstName);
+//        }
+//        if (lastName != null) {
+//            stringBuilder.append(" ").append(lastName);
+//        }
+//        return stringBuilder.toString();
+//    }
 }

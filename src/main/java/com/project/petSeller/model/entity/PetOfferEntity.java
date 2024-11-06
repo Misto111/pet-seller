@@ -15,7 +15,8 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "offers")
-public class OfferEntity extends BaseEntity {
+public class PetOfferEntity extends BaseEntity {
+
     @NotNull
     @JdbcTypeCode(Types.VARCHAR)
     private UUID uuid;
@@ -46,7 +47,7 @@ public class OfferEntity extends BaseEntity {
         return uuid;
     }
 
-    public OfferEntity setUuid(UUID uuid) {
+    public PetOfferEntity setUuid(UUID uuid) {
         this.uuid = uuid;
         return this;
     }
@@ -55,7 +56,7 @@ public class OfferEntity extends BaseEntity {
         return description;
     }
 
-    public OfferEntity setDescription(String description) {
+    public PetOfferEntity setDescription(String description) {
         this.description = description;
         return this;
     }
@@ -64,7 +65,7 @@ public class OfferEntity extends BaseEntity {
         return breed;
     }
 
-    public OfferEntity setBreed(BreedEntity breed) {
+    public PetOfferEntity setBreed(BreedEntity breed) {
         this.breed = breed;
         return this;
     }
@@ -73,7 +74,7 @@ public class OfferEntity extends BaseEntity {
         return color;
     }
 
-    public OfferEntity setColor(ColorEnum color) {
+    public PetOfferEntity setColor(ColorEnum color) {
         this.color = color;
         return this;
     }
@@ -82,7 +83,7 @@ public class OfferEntity extends BaseEntity {
         return gender;
     }
 
-    public OfferEntity setGender(GenderEnum gender) {
+    public PetOfferEntity setGender(GenderEnum gender) {
         this.gender = gender;
         return this;
     }
@@ -91,7 +92,7 @@ public class OfferEntity extends BaseEntity {
         return imageUrl;
     }
 
-    public OfferEntity setImageUrl(String imageUrl) {
+    public PetOfferEntity setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
         return this;
     }
@@ -100,7 +101,7 @@ public class OfferEntity extends BaseEntity {
         return weight;
     }
 
-    public OfferEntity setWeight(Double weight) {
+    public PetOfferEntity setWeight(Double weight) {
         this.weight = weight;
         return this;
     }
@@ -109,7 +110,7 @@ public class OfferEntity extends BaseEntity {
         return price;
     }
 
-    public OfferEntity setPrice(BigDecimal price) {
+    public PetOfferEntity setPrice(BigDecimal price) {
         this.price = price;
         return this;
     }
@@ -118,7 +119,7 @@ public class OfferEntity extends BaseEntity {
         return years;
     }
 
-    public OfferEntity setYears(int years) {
+    public PetOfferEntity setYears(int years) {
         this.years = years;
         return this;
     }
@@ -127,7 +128,7 @@ public class OfferEntity extends BaseEntity {
         return seller;
     }
 
-    public OfferEntity setSeller(UserEntity seller) {
+    public PetOfferEntity setSeller(UserEntity seller) {
         this.seller = seller;
         return this;
     }

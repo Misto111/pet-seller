@@ -19,7 +19,7 @@ public class TestDataUtil {
     private ExchangeRateRepository exchangeRateRepository;
 
     @Autowired
-    private OfferRepository offerRepository;
+    private PetOfferRepository offerRepository;
 
     @Autowired
     private KindRepository kindRepository;
@@ -37,7 +37,7 @@ public class TestDataUtil {
 
 
 
-    public OfferEntity createTestOffer(UserEntity owner) {
+    public PetOfferEntity createTestOffer(UserEntity owner) {
 
         KindEntity kindEntity = kindRepository.save(new KindEntity()
                 .setName("Test Kind")
@@ -46,7 +46,7 @@ public class TestDataUtil {
                         new BreedEntity().setName("Test Breed1")
                 )));
 
-        OfferEntity offer = new OfferEntity()
+        PetOfferEntity offer = new PetOfferEntity()
                 .setBreed(kindEntity.getBreeds().get(0))
                 .setImageUrl("https://www.gooogle.com")
                 .setPrice(BigDecimal.valueOf(1))

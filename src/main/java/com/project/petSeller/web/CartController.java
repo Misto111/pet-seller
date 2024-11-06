@@ -2,9 +2,9 @@ package com.project.petSeller.web;
 
 import com.project.petSeller.model.entity.AccessoryEntity;
 import com.project.petSeller.model.entity.Cart;
-import com.project.petSeller.model.entity.OfferEntity;
+import com.project.petSeller.model.entity.PetOfferEntity;
 import com.project.petSeller.repository.AccessoryRepository;
-import com.project.petSeller.repository.OfferRepository;
+import com.project.petSeller.repository.PetOfferRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +26,7 @@ public class CartController {
     private AccessoryRepository accessoryRepository;
 
     @Autowired
-    private OfferRepository offerRepository;
+    private PetOfferRepository offerRepository;
 
     // Get or create a cart in the session
     public Cart getCart() {
@@ -79,7 +79,7 @@ public class CartController {
         }
 
         // Retrieve the offer by UUID
-        OfferEntity offer = offerRepository.findByUuid(offerUuid).orElse(null);
+        PetOfferEntity offer = offerRepository.findByUuid(offerUuid).orElse(null);
         if (offer != null) {
             getCart().addOffer(offer);
         } else {

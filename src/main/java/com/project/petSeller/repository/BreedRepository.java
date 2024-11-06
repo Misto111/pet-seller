@@ -9,5 +9,6 @@ import java.util.List;
 
 @Repository
 public interface BreedRepository extends JpaRepository<BreedEntity, Long> {
+
     List<BreedDTO> findAllByKindId(Long id);
 }

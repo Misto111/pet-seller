@@ -1,7 +1,7 @@
 package com.project.petSeller.web;
 
-import com.project.petSeller.model.dto.OfferSummaryDTO;
-import com.project.petSeller.service.OfferService;
+import com.project.petSeller.model.dto.PetOfferSummaryDTO;
+import com.project.petSeller.service.PetOfferService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/offers")
 public class OffersController {
 
-    private final OfferService offerService;
+    private final PetOfferService offerService;
 
-    public OffersController(OfferService offerService) {
+    public OffersController(PetOfferService offerService) {
         this.offerService = offerService;
     }
 
@@ -28,7 +28,7 @@ public class OffersController {
                       )
                       Pageable pageable) {
 
-       Page<OfferSummaryDTO> allOffers = offerService.getAllOffers(pageable);
+       Page<PetOfferSummaryDTO> allOffers = offerService.getAllOffers(pageable);
 
        model.addAttribute("offers", allOffers);
 

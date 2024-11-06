@@ -1,8 +1,8 @@
 package com.project.petSeller.service;
 
 import com.project.petSeller.model.dto.CreateOfferDTO;
-import com.project.petSeller.model.dto.OfferDetailDTO;
-import com.project.petSeller.model.dto.OfferSummaryDTO;
+import com.project.petSeller.model.dto.PetOfferDetailDTO;
+import com.project.petSeller.model.dto.PetOfferSummaryDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,13 +10,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface OfferService {
+public interface PetOfferService {
 
     UUID createOffer(CreateOfferDTO createOfferDTO, UserDetails seller);
 
-    Page<OfferSummaryDTO> getAllOffers(Pageable pageable);
+    Page<PetOfferSummaryDTO> getAllOffers(Pageable pageable);
 
-    Optional<OfferDetailDTO> getOfferDetail(UUID offerUUID, UserDetails viewer);
+    Optional<PetOfferDetailDTO> getOfferDetail(UUID offerUUID, UserDetails viewer);
 
     void deleteOffer(UUID offerUUID);
 

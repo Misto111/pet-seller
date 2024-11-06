@@ -7,9 +7,9 @@ import java.util.List;
 
 public class Cart {
     private List<AccessoryEntity> accessories = new ArrayList<>();
-    private List<OfferEntity> offerEntities = new ArrayList<>();
+    private List<PetOfferEntity> offerEntities = new ArrayList<>();
 
-    public void addOffer(OfferEntity offerEntity) {
+    public void addOffer(PetOfferEntity offerEntity) {
         offerEntities.add(offerEntity);
     }
 
@@ -18,7 +18,7 @@ public class Cart {
         accessories.add(accessory);
     }
 
-    public void removeOffer(OfferEntity offerEntity) {
+    public void removeOffer(PetOfferEntity offerEntity) {
         offerEntities.remove(offerEntity);
     }
 
@@ -26,7 +26,7 @@ public class Cart {
         accessories.remove(accessory);
     }
 
-    public List<OfferEntity> getOffers() {
+    public List<PetOfferEntity> getOffers() {
         return offerEntities;
     }
 
@@ -49,7 +49,7 @@ public class Cart {
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         BigDecimal totalOfferPrice = offerEntities.stream()
-                .map(OfferEntity::getPrice) // Предполагам, че getPrice() връща BigDecimal
+                .map(PetOfferEntity::getPrice) // Предполагам, че getPrice() връща BigDecimal
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         return totalAccessoryPrice.add(totalOfferPrice); // Събиране на цените

@@ -2,12 +2,12 @@ package com.project.petSeller.web;
 
 import com.project.petSeller.config.MailConfiguration;
 import com.project.petSeller.model.dto.CreateOfferDTO;
-import com.project.petSeller.model.dto.OfferDetailDTO;
+import com.project.petSeller.model.dto.PetOfferDetailDTO;
 import com.project.petSeller.model.enums.BreedCategoryEnum;
 import com.project.petSeller.model.enums.ColorEnum;
 import com.project.petSeller.model.enums.GenderEnum;
 import com.project.petSeller.service.KindService;
-import com.project.petSeller.service.OfferService;
+import com.project.petSeller.service.PetOfferService;
 import com.project.petSeller.service.exception.ObjectNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -23,15 +23,15 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping("/offer")
-public class OfferController {
+public class PetOfferController {
 
-    private final OfferService offerService;
+    private final PetOfferService offerService;
     private final KindService kindService;
     private final MailConfiguration mailConfiguration;
 
-    public OfferController(OfferService offerService,
-                           KindService kindService,
-                           MailConfiguration mailConfiguration) {
+    public PetOfferController(PetOfferService offerService,
+                              KindService kindService,
+                              MailConfiguration mailConfiguration) {
         this.offerService = offerService;
         this.kindService = kindService;
         this.mailConfiguration = mailConfiguration;
@@ -65,7 +65,7 @@ public class OfferController {
 
         model.addAttribute("kinds", kindService.getAllKinds());
 
-        return "offer-add";
+        return "add-pet";
     }
 
     @PostMapping("/add")
@@ -89,7 +89,7 @@ public class OfferController {
     public String details(@PathVariable("uuid") UUID uuid, Model model,
                           @AuthenticationPrincipal UserDetails viewer) {
 
-      OfferDetailDTO offerDetailDTO = offerService
+      PetOfferDetailDTO offerDetailDTO = offerService
                 .getOfferDetail(uuid, viewer)
                 .orElseThrow(() -> new ObjectNotFoundException("Offer with uuid " + uuid + " was not found!"));
 
@@ -98,7 +98,7 @@ public class OfferController {
         return "details";
     }
 
-    @PreAuthorize("@offerServiceImpl.isOwner(#uuid, #principal.username)")
+    @PreAuthorize("@petOfferServiceImpl.isOwner(#uuid, #principal.username)")
   @DeleteMapping("/{uuid}")
     public String delete(@PathVariable("uuid") UUID uuid,
                          @AuthenticationPrincipal UserDetails principal) {

@@ -1,6 +1,6 @@
 package com.project.petSeller.web;
 
-import com.project.petSeller.model.entity.OfferEntity;
+import com.project.petSeller.model.entity.PetOfferEntity;
 import com.project.petSeller.model.entity.UserEntity;
 import com.project.petSeller.testUtils.TestDataUtil;
 import com.project.petSeller.testUtils.UserTestDataUtil;
@@ -53,7 +53,7 @@ public class OfferControllerTestIT {
     void testAnonymousDeletionFails() throws Exception {
         UserEntity owner = userTestDataUtil.createTestUser("test@example.com");
 
-        OfferEntity offerEntity = testDataUtil.createTestOffer(owner);
+        PetOfferEntity offerEntity = testDataUtil.createTestOffer(owner);
 
         mockMvc.perform(
                         delete("/offer/{uuid}", offerEntity.getUuid())
@@ -69,7 +69,7 @@ public class OfferControllerTestIT {
     void testNonAdminUserOwnedOffer() throws Exception {
         UserEntity owner = userTestDataUtil.createTestUser(TEST_USER1_EMAIL);
 
-        OfferEntity offerEntity = testDataUtil.createTestOffer(owner);
+        PetOfferEntity offerEntity = testDataUtil.createTestOffer(owner);
 
         mockMvc.perform(
                         delete("/offer/{uuid}", offerEntity.getUuid())
@@ -85,7 +85,7 @@ public class OfferControllerTestIT {
         UserEntity owner = userTestDataUtil.createTestUser(TEST_USER1_EMAIL);
         userTestDataUtil.createTestUser(TEST_USER2_EMAIL);
 
-        OfferEntity offerEntity = testDataUtil.createTestOffer(owner);
+        PetOfferEntity offerEntity = testDataUtil.createTestOffer(owner);
 
         mockMvc.perform(
                 delete("/offer/{uuid}", offerEntity.getUuid())
@@ -104,7 +104,7 @@ public class OfferControllerTestIT {
         UserEntity owner = userTestDataUtil.createTestUser(TEST_USER1_EMAIL);
         userTestDataUtil.createTestAdmin(TEST_ADMIN_EMAIL);
 
-        OfferEntity offerEntity = testDataUtil.createTestOffer(owner);
+        PetOfferEntity offerEntity = testDataUtil.createTestOffer(owner);
 
         mockMvc.perform(
                 delete("/offer/{uuid}", offerEntity.getUuid())

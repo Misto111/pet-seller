@@ -5,7 +5,7 @@ import com.project.petSeller.model.enums.GenderEnum;
 
 import java.math.BigDecimal;
 
-public record OfferSummaryDTO(
+public record PetOfferSummaryDTO(
         String id,
         String kind,
         String breed,

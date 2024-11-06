@@ -1,6 +1,5 @@
 package com.project.petSeller.service.impl;
 
-
 import com.project.petSeller.model.dto.UserRegistrationDTO;
 import com.project.petSeller.model.entity.UserEntity;
 import com.project.petSeller.model.events.UserRegisteredEvent;
@@ -18,66 +17,66 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
-  private final UserRepository userRepository;
-  private final PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final ApplicationEventPublisher appEventPublisher;
+    private final UserDetailsService petSellerUserDetailsService;
+    private final UserEntity userEntity;
 
-  private final ApplicationEventPublisher appEventPublisher;
-  private final UserDetailsService petSellerUserDetailsService;
+    public UserServiceImpl(
+            UserRepository userRepository,
+            PasswordEncoder passwordEncoder,
+            ApplicationEventPublisher appEventPublisher,
+            UserDetailsService userDetailsService, UserEntity userEntity) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.appEventPublisher = appEventPublisher;
+        this.petSellerUserDetailsService = userDetailsService;
+        this.userEntity = userEntity;
+    }
 
-  public UserServiceImpl(
-      UserRepository userRepository,
-      PasswordEncoder passwordEncoder,
-      ApplicationEventPublisher appEventPublisher,
-      UserDetailsService userDetailsService) {
-    this.userRepository = userRepository;
-    this.passwordEncoder = passwordEncoder;
-    this.appEventPublisher = appEventPublisher;
-    this.petSellerUserDetailsService = userDetailsService;
-  }
+    @Override
+    public void registerUser(
+            UserRegistrationDTO userRegistrationDTO) {
 
-  @Override
-  public void registerUser(
-      UserRegistrationDTO userRegistrationDTO) {
+        userRepository.save(map(userRegistrationDTO));
 
-    userRepository.save(map(userRegistrationDTO));
+        appEventPublisher.publishEvent(new UserRegisteredEvent(
+                "UserService",
+                userRegistrationDTO.email(),
+                userRegistrationDTO.fullName()
+        ));
+    }
 
-    appEventPublisher.publishEvent(new UserRegisteredEvent(
-        "UserService",
-        userRegistrationDTO.email(),
-        userRegistrationDTO.fullName()
-    ));
-  }
+    @Override
+    public void createUserIfNotExist(String email, String names) {
+        // Create manually a user in the database
+        // password not necessary
+    }
 
-  @Override
-  public void createUserIfNotExist(String email, String names) {
-    // Create manually a user in the database
-    // password not necessary
-  }
+    @Override
+    public Authentication login(String email) {
+        UserDetails userDetails = petSellerUserDetailsService.loadUserByUsername(email);
 
-  @Override
-  public Authentication login(String email) {
-    UserDetails userDetails = petSellerUserDetailsService.loadUserByUsername(email);
+        Authentication auth = new UsernamePasswordAuthenticationToken(
+                userDetails,
+                userDetails.getPassword(),
+                userDetails.getAuthorities()
+        );
 
+        SecurityContextHolder.getContext().setAuthentication(auth);
 
-    Authentication auth = new UsernamePasswordAuthenticationToken(
-        userDetails,
-        userDetails.getPassword(),
-        userDetails.getAuthorities()
-    );
-
-    SecurityContextHolder.getContext().setAuthentication(auth);
-
-    return auth;
-  }
-
-  private UserEntity map(UserRegistrationDTO userRegistrationDTO) {
-    return new UserEntity()
-        .setActive(false)
-        .setFirstName(userRegistrationDTO.firstName())
-        .setLastName(userRegistrationDTO.lastName())
-        .setEmail(userRegistrationDTO.email())
-        .setPassword(passwordEncoder.encode(userRegistrationDTO.password()));
-  }
+        return auth;
+    }
 
 
+
+    private UserEntity map(UserRegistrationDTO userRegistrationDTO) {
+        return new UserEntity()
+                .setActive(false)
+                .setFirstName(userRegistrationDTO.firstName())
+                .setLastName(userRegistrationDTO.lastName())
+                .setEmail(userRegistrationDTO.email())
+                .setPassword(passwordEncoder.encode(userRegistrationDTO.password()));
+    }
 }
