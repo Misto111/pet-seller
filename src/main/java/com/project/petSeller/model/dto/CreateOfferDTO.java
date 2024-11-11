@@ -4,7 +4,7 @@ import com.project.petSeller.model.enums.ColorEnum;
 import com.project.petSeller.model.enums.GenderEnum;
 import jakarta.validation.constraints.*;
 
-public record CreateOfferDTO(@NotEmpty @Size(min = 5, max = 512)
+public record CreateOfferDTO(@NotEmpty @Size(min = 30, max = 512)
                              String description,
                              @Positive
                              @NotNull
@@ -21,7 +21,7 @@ public record CreateOfferDTO(@NotEmpty @Size(min = 5, max = 512)
                              @Positive
                              @NotNull
                              Integer price,
-                             @NotNull(message = "Years must be provided")
+                             @NotNull(message = "Years are required.")
                              Integer years) {
 
     public static CreateOfferDTO empty() {

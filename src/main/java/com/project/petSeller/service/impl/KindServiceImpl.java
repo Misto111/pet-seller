@@ -17,7 +17,6 @@ public class KindServiceImpl implements KindService {
 
     public KindServiceImpl(KindRepository kindRepository) {
         this.kindRepository = kindRepository;
-        ;
     }
 
     @Override

@@ -21,7 +21,7 @@
             <div class="form-group col-md-6 mb-3">
                 <label class="form-color" for="breedId">Breed</label>
                 <select id="breedId"
-                        th:name="breedId"
+                        th:field="*{breedId}"
                         th:errorclass="is-invalid"
                         class="form-control">
                     <option value="">- Select a breed -</option>
@@ -52,9 +52,9 @@
                        th:errorclass="is-invalid"
                        type="number"
                        class="form-control"
-                       placeholder="Suggested price"/>
+                       placeholder="Price in $"/>
                 <p class="invalid-feedback errors alert alert-danger">
-                    Suggested price is required.
+                    Price is required.
                 </p>
             </div>
 
@@ -73,11 +73,12 @@
                     <option value="">- Select color -</option>
                     <option th:each="c : ${colors}"
                             th:text="${c}"
-                            th:value="${c}">
+                            th:value="${c}"
+                            th:selected="${c} == *{color}">
                     </option>
                 </select>
                 <p class="invalid-feedback errors alert alert-danger">
-                    Color type is required.
+                    Color is required.
                 </p>
             </div>
 
@@ -98,7 +99,7 @@
                     </option>
                 </select>
                 <p class="invalid-feedback  errors alert alert-danger">
-                   Gender type is required.
+                   Gender is required.
                 </p>
             </div>
 
@@ -129,7 +130,7 @@
                        class="form-control"
                        placeholder="Weight in kilograms"/>
                 <p class="invalid-feedback errors alert alert-danger">
-                    Weight in kilograms is required.
+                    Weight is required.
                 </p>
             </div>
 
@@ -147,7 +148,7 @@
                       placeholder="Description">
             </textarea>
             <p class="invalid-feedback errors alert alert-danger">
-                Description is required.
+                The description must be a minimum of 20 characters.
             </p>
         </div>
 

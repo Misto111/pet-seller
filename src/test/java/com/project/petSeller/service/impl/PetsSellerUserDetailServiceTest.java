@@ -22,14 +22,14 @@ import static org.mockito.Mockito.when;
 public class PetsSellerUserDetailServiceTest {
 
 
-    private PetsSellerUserDetailService serviceToTest;
+    private PetSellerUserDetailService serviceToTest;
     @Mock
     private UserRepository mockUserRepository;
 
     @BeforeEach
     void setup() {
 
-        serviceToTest = new PetsSellerUserDetailService(
+        serviceToTest = new PetSellerUserDetailService(
                 mockUserRepository
         );
 

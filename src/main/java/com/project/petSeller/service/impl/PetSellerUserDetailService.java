@@ -10,11 +10,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-public class PetsSellerUserDetailService implements UserDetailsService {
+public class PetSellerUserDetailService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
-    public PetsSellerUserDetailService(UserRepository userRepository) {
+    public PetSellerUserDetailService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -22,7 +22,7 @@ public class PetsSellerUserDetailService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return userRepository
                 .findByEmail(email)
-                .map(PetsSellerUserDetailService::map)
+                .map(PetSellerUserDetailService::map)
                 .orElseThrow(() -> new UsernameNotFoundException("User " + email + " not found!"));
 
     }
@@ -31,7 +31,7 @@ public class PetsSellerUserDetailService implements UserDetailsService {
         return User
                 .withUsername(userEntity.getEmail())
                 .password(userEntity.getPassword())
-                .authorities(userEntity.getRoles().stream().map(PetsSellerUserDetailService::map).toList())
+                .authorities(userEntity.getRoles().stream().map(PetSellerUserDetailService::map).toList())
                 .build();
 
     }

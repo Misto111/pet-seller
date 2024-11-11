@@ -19,18 +19,16 @@ public class FieldMatchValidator implements ConstraintValidator<FieldMatch, Obje
         this.second = constraintAnnotation.second();
         this.message = constraintAnnotation.message();
 
-
-
     }
 
     @Override
     public boolean isValid(Object value, ConstraintValidatorContext context) {
 
-        BeanWrapper beanWrapper = PropertyAccessorFactory
+        BeanWrapper beanWrapper = PropertyAccessorFactory           //Можем да достъпваме различни полета чрез рефлекшън
                 .forBeanPropertyAccess(value);
 
-       Object firstProperty = beanWrapper.getPropertyValue(this.first);
-       Object secondProperty = beanWrapper.getPropertyValue(this.second);
+        Object firstProperty = beanWrapper.getPropertyValue(this.first);
+        Object secondProperty = beanWrapper.getPropertyValue(this.second);
 
         boolean isValid = Objects.equals(firstProperty, secondProperty);
 
@@ -40,7 +38,6 @@ public class FieldMatchValidator implements ConstraintValidator<FieldMatch, Obje
                     .addPropertyNode(second)
                     .addConstraintViolation()
                     .disableDefaultConstraintViolation();
-
         }
 
         return isValid;

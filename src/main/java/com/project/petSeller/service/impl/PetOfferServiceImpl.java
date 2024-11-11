@@ -44,7 +44,6 @@ public class PetOfferServiceImpl implements PetOfferService {
     @Override
     public UUID createOffer(CreateOfferDTO createOfferDTO, UserDetails seller) {
 
-
         // когато не сме имплементирали един метод можем да хвърляме exception
         PetOfferEntity newOffer = map(createOfferDTO);
         BreedEntity breedEntity = breedRepository.findById(createOfferDTO.breedId()).orElseThrow(() ->
@@ -69,29 +68,28 @@ public class PetOfferServiceImpl implements PetOfferService {
 
         System.out.println("IN GET ALL OFFERS");
 
-       return  offerRepository
+        return offerRepository
                 .findAll(pageable)
                 .map(PetOfferServiceImpl::mapAsSummary);
 
-       }
+    }
+
     @WarnIfExecutionExceeds(
             timeInMillis = 500L
     )
 
 
     @Override
-   public Optional<PetOfferDetailDTO> getOfferDetail(UUID offerUUID, UserDetails viewer) {
+    public Optional<PetOfferDetailDTO> getOfferDetail(UUID offerUUID, UserDetails viewer) {
         return offerRepository
                 .findByUuid(offerUUID)
                 .map(o -> this.mapAsDetails(o, viewer));
-
-
     }
 
     @Override
     @Transactional
     public void deleteOffer(UUID offerUUID) {
-         offerRepository.deleteByUuid(offerUUID);
+        offerRepository.deleteByUuid(offerUUID);
     }
 
     private PetOfferDetailDTO mapAsDetails(PetOfferEntity offerEntity, UserDetails viewer) {
@@ -107,21 +105,17 @@ public class PetOfferServiceImpl implements PetOfferService {
                 offerEntity.getGender(),
                 offerEntity.getImageUrl(),
                 offerEntity.getSeller().getFirstName(),
-                isOwner(offerEntity, viewer != null? viewer.getUsername() : null));
-
+                isOwner(offerEntity, viewer != null ? viewer.getUsername() : null));
     }
 
 
     @Override
     public boolean isOwner(UUID uuid, String userName) {
 
-
         return isOwner(
                 offerRepository.findByUuid(uuid).orElse(null),
                 userName
         );
-
-
     }
 
     private boolean isOwner(PetOfferEntity offerEntity, String userName) {
@@ -130,11 +124,9 @@ public class PetOfferServiceImpl implements PetOfferService {
             return false;
         }
 
-
-
-     UserEntity viewerEntity =  userRepository
-             .findByEmail(userName)
-             .orElseThrow(() -> new IllegalArgumentException("Unknown user..."));
+        UserEntity viewerEntity = userRepository
+                .findByEmail(userName)
+                .orElseThrow(() -> new IllegalArgumentException("Unknown user..."));
 
         if (isAdmin(viewerEntity)) {
             return true;
@@ -151,7 +143,6 @@ public class PetOfferServiceImpl implements PetOfferService {
                 .map(UserRoleEntity::getRole)
                 .anyMatch(r -> UserRoleEnum.ADMIN == r);
     }
-
 
     private static PetOfferSummaryDTO mapAsSummary(PetOfferEntity offerEntity) {
         return new PetOfferSummaryDTO(

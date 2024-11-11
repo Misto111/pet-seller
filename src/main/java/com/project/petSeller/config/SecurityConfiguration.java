@@ -2,7 +2,7 @@ package com.project.petSeller.config;
 
 import com.project.petSeller.model.enums.UserRoleEnum;
 import com.project.petSeller.repository.UserRepository;
-import com.project.petSeller.service.impl.PetsSellerUserDetailService;
+import com.project.petSeller.service.impl.PetSellerUserDetailService;
 import com.project.petSeller.service.oauth.OauthSuccessHandler;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
@@ -80,7 +80,7 @@ public class SecurityConfiguration {
 
     @Bean
     public UserDetailsService userDetailsService(UserRepository userRepository) {
-        return new PetsSellerUserDetailService(userRepository);
+        return new PetSellerUserDetailService(userRepository);
     }
 
     @Bean

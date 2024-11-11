@@ -33,8 +33,6 @@ logging:
      org.hibernate.SQL: DEBUG
      org.hibernate.orm.jdbc.bind: TRACE
 
-
-
 open.exchange.rates:
   schema: https
   host: openexchangerates.org
@@ -43,14 +41,12 @@ open.exchange.rates:
   symbols: EUR,BGN
   enabled: false
 
-
 mail:
     petsSeller: "pet@seller.com"
     host: localhost
     port: 1025
     username: ${MAIL_USER}
     password: ${MAIL_PASSWORD}
-
 
 
 management:

@@ -14,8 +14,13 @@ public record UserRegistrationDTO(@NotEmpty String firstName,
                                   @NotNull @Email @UniqueUserEmail String email,
                                   String password,
                                   String confirmPassword) {
+
     public String fullName() {
         return firstName + " " + lastName;
+    }
+
+    public static UserRegistrationDTO emptyUserRegistrationDTO() {
+        return new UserRegistrationDTO(null, null, null, null, null);
     }
 
 }
