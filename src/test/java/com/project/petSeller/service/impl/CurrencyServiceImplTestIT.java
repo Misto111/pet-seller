@@ -1,9 +1,6 @@
 package com.project.petSeller.service.impl;
 
-import com.project.petSeller.model.dto.ExchangeRatesDTO;
 import com.project.petSeller.model.entity.ExchangeRateEntity;
-import com.project.petSeller.repository.ExchangeRateRepository;
-import com.project.petSeller.service.CurrencyService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;

@@ -33,7 +33,6 @@ public class PetSellerUserDetailService implements UserDetailsService {
                 .password(userEntity.getPassword())
                 .authorities(userEntity.getRoles().stream().map(PetSellerUserDetailService::map).toList())
                 .build();
-
     }
 
     private static GrantedAuthority map(UserRoleEntity userRoleEntity) {

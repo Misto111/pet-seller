@@ -33,14 +33,6 @@ logging:
      org.hibernate.SQL: DEBUG
      org.hibernate.orm.jdbc.bind: TRACE
 
-open.exchange.rates:
-  schema: https
-  host: openexchangerates.org
-  path: /api/latest.json
-  app_id: ${APP_ID}
-  symbols: EUR,BGN
-  enabled: false
-
 mail:
     petsSeller: "pet@seller.com"
     host: localhost

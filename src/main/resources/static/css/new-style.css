@@ -358,6 +358,23 @@ button[type="submit"]:hover {
     max-width: 220px;
     float: right;
 }
-
 /* Стил за Total край */
+
+/* Стил за Login via Github старт */
+.container a.btn-outline-primary {
+    color: black !important;
+    border-color: #007bff !important;
+    background-color: rgba(13, 110, 253, 0.8) !important;
+    padding: 3px 3px !important;
+    width: 800px !important;
+    display: block; /* Прави бутона блоков елемент */
+    margin: 0 auto; /* Центрира бутона хоризонтално */
+    font-size: 1.3rem; /* Увеличава размера на текста */
+}
+
+.container a.btn-outline-primary:hover {
+    background-color: #007bff !important; /* Син фон при ховър */
+    color: white !important; /* Бял текст при ховър */
+}
+/* Стил за Login via Github край */
 
