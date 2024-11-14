@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:replace="~{fragments/head}">
 </head>
@@ -12,9 +11,11 @@
 </div>
 
 <div class="container-fluid">
-    <h5 class="text-center text-white mt-5">Upps, something went terribly wrong!</h5>
-    <h5 class="text-center text-white mt-5">We are very sorry and we are working to resolve the problem!</h5>
-    <img th:src="@{/images/HachiError.JPEG}" alt="Hachi error">
+    <!-- Текст за грешка 500 - Вътрешна сървърна грешка -->
+    <h3 class="text-danger mt-5">Something went wrong on our end!</h3>
+    <p class="text-muted">We are working hard to resolve the issue. Please bear with us while we fix the problem.</p>
+    <p>Meanwhile, feel free to go back to the <a href="/" th:href="@{/}">home page</a> or contact support if you need assistance.</p>
+    <img th:src="@{/images/HachiError.JPEG}" alt="Hachi Error Image" class="img-fluid mt-4">
 </div>
 
 <div>

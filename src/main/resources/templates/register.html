@@ -48,16 +48,12 @@
             </div>
         </div>
         <div class="row">
-            <div class="email">
+            <div class="form-group col-md-12 mb-3">
                 <label for="email" class="form-color">Email</label>
-                <input id="email"
-                       th:field="*{email}"
-                       th:errorclass="is-invalid"
-                       type="text"
-                       class="form-control"
-                       placeholder="Email"/>
-                <p class="invalid-feedback  errors alert alert-danger">
-                    Email is required.
+                <input id="email" th:field="*{email}" th:errorclass="is-invalid" type="text" class="form-control" placeholder="Email"/>
+                <!-- Показване на грешка ако има такава -->
+                <p class="invalid-feedback errors alert alert-danger" th:if="${#fields.hasErrors('email')}">
+                    <span th:errors="*{email}">Email is required.</span>
                 </p>
             </div>
         </div>

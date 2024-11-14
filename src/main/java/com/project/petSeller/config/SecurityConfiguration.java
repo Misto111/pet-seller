@@ -35,14 +35,12 @@ public class SecurityConfiguration {
                 authorizeRequests -> authorizeRequests.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll()
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
-                        .requestMatchers("/", "/users/login", "/users/register", "/users/login-error").permitAll()
+                        .requestMatchers("/", "/users/**").permitAll()
                         .requestMatchers("/offers/all").permitAll()
                         .requestMatchers("/accessories/all").permitAll()
-                        .requestMatchers("/cart-view").permitAll()
-                        .requestMatchers("/cart/view").permitAll()
-                        .requestMatchers("/cart/add").permitAll()
+                        .requestMatchers("/cart/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/accessories/**").permitAll()
-                        .requestMatchers("/api/currency/convert").permitAll()
+                        .requestMatchers("/api/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/offer/**").permitAll()
                         .requestMatchers("/error").permitAll()
                         .requestMatchers("/kinds").hasRole(UserRoleEnum.ADMIN.name())
@@ -55,7 +53,6 @@ public class SecurityConfiguration {
                             .passwordParameter("password")
                             .defaultSuccessUrl("/")
                             .failureForwardUrl("/users/login-error");
-
                 }
         ).logout(
                 logout -> {
@@ -70,6 +67,10 @@ public class SecurityConfiguration {
                     rememberMe.key(rememberMeKey)
                             .rememberMeParameter("rememberme")
                             .rememberMeCookieName("rememberme")
+
+        ).sessionManagement(session -> session                   //контрол за сесията, за се да предотвратят сесии от един и същ потребител на различни устройства
+                                    .maximumSessions(3)
+                                    .maxSessionsPreventsLogin(true)
 
         ).oauth2Login(
                 oauth ->
