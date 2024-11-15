@@ -38,7 +38,6 @@ public class PetOfferController {
     }
 
 
-
     @ModelAttribute("colors")
     public ColorEnum[] colors() {
         return ColorEnum.values();
@@ -47,8 +46,9 @@ public class PetOfferController {
 
     @ModelAttribute("genders")
     public GenderEnum[] genders() {
-      return GenderEnum.values();
+        return GenderEnum.values();
     }
+
     @ModelAttribute("breeds")
     public BreedCategoryEnum[] breeds() {
         return BreedCategoryEnum.values();
@@ -80,7 +80,7 @@ public class PetOfferController {
             return "redirect:/offer/add";
         }
 
-       UUID newOfferUUID = offerService.createOffer(createOfferDTO, seller);
+        UUID newOfferUUID = offerService.createOffer(createOfferDTO, seller);
 
         return "redirect:/offer/" + newOfferUUID;
     }
@@ -89,26 +89,23 @@ public class PetOfferController {
     public String details(@PathVariable("uuid") UUID uuid, Model model,
                           @AuthenticationPrincipal UserDetails viewer) {
 
-      PetOfferDetailDTO offerDetailDTO = offerService
+        PetOfferDetailDTO offerDetailDTO = offerService
                 .getOfferDetail(uuid, viewer)
                 .orElseThrow(() -> new ObjectNotFoundException("Offer with uuid " + uuid + " was not found!"));
 
-      model.addAttribute("offer", offerDetailDTO);
+        model.addAttribute("offer", offerDetailDTO);
 
         return "details";
     }
 
     @PreAuthorize("@petOfferServiceImpl.isOwner(#uuid, #principal.username)")
-  @DeleteMapping("/{uuid}")
+    @DeleteMapping("/{uuid}")
     public String delete(@PathVariable("uuid") UUID uuid,
                          @AuthenticationPrincipal UserDetails principal) {
 
         offerService.deleteOffer(uuid);
 
-
-      return "redirect:/offers/all";
-
-  }
-
+        return "redirect:/offers/all";
+    }
 }
 

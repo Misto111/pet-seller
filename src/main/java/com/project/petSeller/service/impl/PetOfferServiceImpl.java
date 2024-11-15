@@ -66,18 +66,14 @@ public class PetOfferServiceImpl implements PetOfferService {
     @Override
     public Page<PetOfferSummaryDTO> getAllOffers(Pageable pageable) {
 
-        System.out.println("IN GET ALL OFFERS");
-
         return offerRepository
                 .findAll(pageable)
                 .map(PetOfferServiceImpl::mapAsSummary);
-
     }
 
     @WarnIfExecutionExceeds(
             timeInMillis = 500L
     )
-
 
     @Override
     public Optional<PetOfferDetailDTO> getOfferDetail(UUID offerUUID, UserDetails viewer) {
@@ -107,7 +103,6 @@ public class PetOfferServiceImpl implements PetOfferService {
                 offerEntity.getSeller().getFirstName(),
                 isOwner(offerEntity, viewer != null ? viewer.getUsername() : null));
     }
-
 
     @Override
     public boolean isOwner(UUID uuid, String userName) {
@@ -157,7 +152,6 @@ public class PetOfferServiceImpl implements PetOfferService {
                 offerEntity.getImageUrl());
 
     }
-
 
     private static PetOfferEntity map(CreateOfferDTO createOfferDTO) {
         return new PetOfferEntity()

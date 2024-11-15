@@ -37,15 +37,14 @@ public class EmailServiceImpl implements EmailService {
             mimeMessageHelper.setTo(userEmail);
             mimeMessageHelper.setFrom(petsSellerEmail);
             mimeMessageHelper.setReplyTo(petsSellerEmail);
-            mimeMessageHelper.setSubject("Welcome to pets-seller!");
+            mimeMessageHelper.setSubject("Welcome to Petseller!");
             mimeMessageHelper.setText(generateRegistrationEmailBody(userName, activationCode), true);
 
-            //javaMailSender.send(mimeMessageHelper.getMimeMessage());
+           // javaMailSender.send(mimeMessageHelper.getMimeMessage());
 
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     private String generateRegistrationEmailBody(String userName, String activationCode) {

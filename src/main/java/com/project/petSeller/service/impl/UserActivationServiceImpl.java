@@ -32,8 +32,6 @@ public class UserActivationServiceImpl implements UserActivationService {
         this.userActivationCodeRepository = userActivationCodeRepository;
     }
 
-
-
     @EventListener(UserRegisteredEvent.class)
     @Override
     public void userRegistered(UserRegisteredEvent event) {
@@ -43,14 +41,6 @@ public class UserActivationServiceImpl implements UserActivationService {
         emailService.sendRegistrationEmail(event.getUserEmail(), event.getUserNames(), activationCode);
 
     }
-
-    @Override
-    public void cleanUpObsoleteActivationLinks() {
-
-        //System.out.println("NOT YET");
-
-    }
-
 
     public String createActivationCode(String userEmail) {
 

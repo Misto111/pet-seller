@@ -103,6 +103,6 @@ public class UserServiceImpl implements UserService {
 
     // Валидация на парола (например минимална дължина)
     private boolean isValidPassword(String password) {
-        return password.length() >= 5; // Минимум 6 символа
+        return password.length() >= 5; // Минимум 5 символа
     }
 }
