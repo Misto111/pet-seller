@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
+
 import java.lang.reflect.Method;
 
 @Aspect
@@ -23,8 +24,9 @@ public class MonitoringAspect {
     public MonitoringAspect(MonitoringService monitoringService) {
         this.monitoringService = monitoringService;
     }
+
     @Before("Pointcuts.trackOfferSearch()")
-    public void  logOfferSearch() {
+    public void logOfferSearch() {
         monitoringService.logOfferSearch();
     }
 
@@ -48,16 +50,15 @@ public class MonitoringAspect {
                     pjp.getSignature(),
                     stopWatch.getLastTaskTimeMillis(),
                     timeout);
-
         }
 
-        return  returnValue;
+        return returnValue;
 
     }
 
     private static WarnIfExecutionExceeds getAnnotation(ProceedingJoinPoint pjp) {
 
-        Method method = ((MethodSignature)pjp.getSignature()).getMethod();
+        Method method = ((MethodSignature) pjp.getSignature()).getMethod();
 
         try {
             return pjp
@@ -68,6 +69,5 @@ public class MonitoringAspect {
         } catch (NoSuchMethodException e) {
             throw new RuntimeException(e);
         }
-
     }
 }

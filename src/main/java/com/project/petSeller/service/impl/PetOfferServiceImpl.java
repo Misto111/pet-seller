@@ -65,7 +65,6 @@ public class PetOfferServiceImpl implements PetOfferService {
 
     @Override
     public Page<PetOfferSummaryDTO> getAllOffers(Pageable pageable) {
-
         return offerRepository
                 .findAll(pageable)
                 .map(PetOfferServiceImpl::mapAsSummary);

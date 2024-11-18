@@ -33,6 +33,11 @@ logging:
      org.hibernate.SQL: DEBUG
      org.hibernate.orm.jdbc.bind: TRACE
 
+google.recaptcha:
+  site: ${RECAPTCHA_SITE_KEY}
+  secret: ${RECAPTCHA_SITE_SECRET}
+
+
 mail:
     petsSeller: "pet@seller.com"
     host: localhost

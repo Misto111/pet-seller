@@ -24,6 +24,5 @@ public class DBInit implements CommandLineRunner {
                     new UserRoleEntity().setRole(UserRoleEnum.ADMIN)
             ));
         }
-
     }
 }

@@ -6,7 +6,6 @@ public class Pointcuts {
     @Pointcut("execution(* com.project.petSeller.service.PetOfferService.getAllOffers(..))")
     public void trackOfferSearch() {}
 
-
     @Pointcut("@annotation(WarnIfExecutionExceeds)")
     public void warnIfExecutionExceeds(){}
 }

@@ -1,5 +1,4 @@
 package com.project.petSeller.model.dto;
-
 import com.project.petSeller.model.enums.ColorEnum;
 import com.project.petSeller.model.enums.GenderEnum;
 

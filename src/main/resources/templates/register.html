@@ -16,6 +16,7 @@
 
 
     <form
+            id="registration-form"
             th:action="@{/users/register}"
             th:method="post"
             th:object="${userRegistrationDTO}"
@@ -87,16 +88,33 @@
             </div>
         </div>
 
-        <div class="row justify-content-center"> <!-- Добавен клас за центриране -->
-            <div class="col-md-4"> <!-- Премахване на div с клас button-holder -->
-                <input type="submit" class="btn btn-info btn-lg w-100" value="Register"> <!-- Добавяне на w-100 клас -->
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="button-holder d-flex">
+                    <button class="g-recaptcha btn btn-info btn-lg w-100"
+                            th:attr="data-sitekey=${@reCaptchaConfig.getSite()}"
+                            data-callback='onSubmit'
+                            data-action='submit'>Register</button>
+                </div>
             </div>
         </div>
+
+      <!--  <div class="row justify-content-center"> < Добавен клас за центриране -->
+          <!--  <div class="col-md-4"> Премахване на div с клас button-holder -->
+             <!--   <input type="submit" class="btn btn-info btn-lg w-100" value="Register">  Добавяне на w-100 клас -->
+           <!-- </div> -->
+       <!-- </div> -->
+
     </form>
-
 </div>
-
-
+<!-- ReCaptcha -->
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<script>
+    function onSubmit(token) {
+        document.getElementById("registration-form").submit();
+    }
+</script>
+<!-- EO: ReCaptcha -->
 <div>
     <footer> </footer>
 </div>

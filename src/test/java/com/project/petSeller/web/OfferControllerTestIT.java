@@ -4,8 +4,6 @@ import com.project.petSeller.model.entity.PetOfferEntity;
 import com.project.petSeller.model.entity.UserEntity;
 import com.project.petSeller.testUtils.TestDataUtil;
 import com.project.petSeller.testUtils.UserTestDataUtil;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -75,13 +73,12 @@ public class OfferControllerTestIT {
                 delete("/offer/{uuid}", offerEntity.getUuid())
                         .with(csrf())
         ).andExpect(status().is5xxServerError());
-
     }
 
     @Test
     @WithMockUser(
             username = TEST_ADMIN_EMAIL,
-    roles = {"USER", "ADMIN"})
+            roles = {"USER", "ADMIN"})
     void testAdminUserNotOwnedOffer() throws Exception {
 
         UserEntity owner = userTestDataUtil.createTestUser(TEST_USER1_EMAIL);
@@ -90,10 +87,9 @@ public class OfferControllerTestIT {
         PetOfferEntity offerEntity = testDataUtil.createTestOffer(owner);
 
         mockMvc.perform(
-                delete("/offer/{uuid}", offerEntity.getUuid())
-                        .with(csrf())
-        ).andExpect(status().is3xxRedirection())
+                        delete("/offer/{uuid}", offerEntity.getUuid())
+                                .with(csrf())
+                ).andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/offers/all"));
-
     }
 }

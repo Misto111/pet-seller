@@ -10,24 +10,22 @@ import org.springframework.stereotype.Service;
 @Service
 public class MonitoringServiceImpl implements MonitoringService {
 
-  private Logger LOGGER = LoggerFactory.getLogger(MonitoringServiceImpl.class);
+    private Logger LOGGER = LoggerFactory.getLogger(MonitoringServiceImpl.class);
 
-  private final Counter offerSearches;
+    private final Counter offerSearches;
 
-  public MonitoringServiceImpl(MeterRegistry meterRegistry) {
-    offerSearches = Counter
-        .builder("offer_search_cnt")
-        .description("How many offer searched we have performed")
-        .register(meterRegistry);
-  }
+    public MonitoringServiceImpl(MeterRegistry meterRegistry) {
+        offerSearches = Counter
+                .builder("add_search_counter")
+                .description("How many searches were made on the ads")
+                .register(meterRegistry);
+    }
 
+    @Override
+    public void logOfferSearch() {
 
-  @Override
-  public void logOfferSearch() {
+        LOGGER.info("Ad search.");
 
-    LOGGER.info("Offer search was performed.");
-
-    offerSearches.increment();
-
-  }
+        offerSearches.increment();
+    }
 }

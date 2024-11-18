@@ -28,7 +28,6 @@ public class UserTestDataUtil {
 
     public UserEntity createTestAdmin(String email) {
         return createUser(email, List.of(UserRoleEnum.ADMIN));
-
     }
 
     private UserEntity createUser(String email, List<UserRoleEnum> roles) {

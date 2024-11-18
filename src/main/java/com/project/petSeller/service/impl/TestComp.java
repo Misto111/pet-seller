@@ -21,17 +21,10 @@ public class TestComp implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-
         List<KindEntity> kinds = kindRepository.findAll();
 
-
         kinds.forEach(k -> {
-
-
             k.getBreeds().forEach(System.out::println);
-
         });
-
-
     }
 }
