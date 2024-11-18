@@ -19,7 +19,6 @@ import org.springframework.cache.annotation.EnableCaching;
                         description = "Local server"
 
                 )
-
         }
 )
 @EnableCaching

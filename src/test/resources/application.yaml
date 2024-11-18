@@ -1,41 +1,37 @@
 spring:
   jpa:
     hibernate:
-      ddl-auto: create-drop
-    defer-datasource-initialization: true
+      ddl-auto: update  # Променено на 'update', за да не губите данни при рестартиране в продукционна среда
+    defer-datasource-initialization: true  # Отлага инициализацията на данни след зареждане на всички зависимости
   sql:
     init:
-      mode: never
+      mode: never  # SQL скриптовете няма да се изпълняват автоматично при стартиране
   mvc:
     hiddenmethod:
       filter:
-        enabled: true
+        enabled: true  # Поддържа използването на скрити методи (PUT, DELETE) в HTTP формуляри
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: d944a848a1a4e9d21445
+            client-secret: 0e9c6ea79caaca65c33a4bf602a20e4264010608
+            scope: user:email
+
 petsSeller:
-  default.admin.pass: topsecret
-  remember.me.key: topsecret
+  default.admin.pass: topsecret  # Парола за администратор по подразбиране
+  remember.me.key: 12345  # Ключ за "Remember Me" функционалност
 
 logging:
   level:
-    org.hibernate.SQL: debug
-    org.hibernate.orm.jdbc.bind: TRACE
-
-
-
-open.exchange.rates:
-  schema: https
-  host: dummy
-  path: /api/latest.json
-  app_id: test
-  symbols: EUR,BGN
-  enabled: false
+    org.hibernate.SQL: debug  # Логва всички SQL заявки, които Hibernate изпълнява
+    org.hibernate.orm.jdbc.bind: TRACE  # Логва стойностите на параметрите в SQL заявките
 
 mail:
-  petsSeller: "pet@seller.com"
-  host: localhost
-  port: 3333
-  username: test@example.com
-  password: topsecret
-
-
-
+  petsSeller: "pet@seller.com"  # Имейл на системата
+  host: localhost  # SMTP сървър (например, за тестове може да използвате локален сървър)
+  port: 3333  # Порт за връзка със SMTP сървъра (обикновено 25, 465, 587)
+  username: test@example.com  # Потребителско име за имейл акаунта
+  password: 12345  # Парола за имейл акаунта
 

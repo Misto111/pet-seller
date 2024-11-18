@@ -11,7 +11,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -32,16 +31,14 @@ public class PetsSellerUserDetailServiceTest {
         serviceToTest = new PetSellerUserDetailService(
                 mockUserRepository
         );
-
     }
 
     @Test
     void testUserNotFound() {
 
-
-       assertThrows(UsernameNotFoundException.class,
+        assertThrows(
+                UsernameNotFoundException.class,
                 () -> serviceToTest.loadUserByUsername("hachi@kuchev.com"));
-
 
     }
 
@@ -55,14 +52,14 @@ public class PetsSellerUserDetailServiceTest {
                 .thenReturn(Optional.of(testUserEntity));
 
         // Act
-       UserDetails userDetails = serviceToTest.loadUserByUsername(testUserEntity.getEmail());
+        UserDetails userDetails = serviceToTest.loadUserByUsername(testUserEntity.getEmail());
 
-       // Assert
+        // Assert
         assertNotNull(userDetails);
         assertEquals(
                 testUserEntity.getEmail(),
                 userDetails.getUsername(),
-                "Username i not mapped to email.");
+                "Username is not mapped to email.");
 
         assertEquals(testUserEntity.getPassword(), userDetails.getPassword());
         assertEquals(2, userDetails.getAuthorities().size());
@@ -71,7 +68,7 @@ public class PetsSellerUserDetailServiceTest {
                 "The user is not admin");
         assertTrue(
                 containsAuthority(userDetails, "ROLE_" + UserRoleEnum.USER),
-                "The user is not user");
+                "The user is admin");
 
     }
 
@@ -86,9 +83,9 @@ public class PetsSellerUserDetailServiceTest {
         return new UserEntity()
                 .setFirstName("firstName")
                 .setLastName("lastName")
-                .setEmail("pesho@softuni.bg")
+                .setEmail("hachi@kuchev.com")
                 .setActive(false)
-                .setPassword("topsecret")
+                .setPassword("password")
                 .setRoles(List.of(
                         new UserRoleEntity().setRole(UserRoleEnum.ADMIN),
                         new UserRoleEntity().setRole(UserRoleEnum.USER)

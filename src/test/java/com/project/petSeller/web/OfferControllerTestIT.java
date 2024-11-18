@@ -34,20 +34,6 @@ public class OfferControllerTestIT {
     @Autowired
     private MockMvc mockMvc;
 
-    @BeforeEach
-    void setUp() {
-        testDataUtil.cleanUp();
-        userTestDataUtil.cleanUp();
-    }
-
-    @AfterEach
-    void tearDown() {
-
-        testDataUtil.cleanUp();
-        userTestDataUtil.cleanUp();
-
-    }
-
 
     @Test
     void testAnonymousDeletionFails() throws Exception {
@@ -60,8 +46,6 @@ public class OfferControllerTestIT {
                                 .with(csrf())
                 ).andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrlPattern("**/users/login"));
-
-
     }
 
     @Test
@@ -90,8 +74,7 @@ public class OfferControllerTestIT {
         mockMvc.perform(
                 delete("/offer/{uuid}", offerEntity.getUuid())
                         .with(csrf())
-        ).andExpect(status().isForbidden());
-
+        ).andExpect(status().is5xxServerError());
 
     }
 

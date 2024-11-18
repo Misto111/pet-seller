@@ -39,6 +39,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void registerUser(UserRegistrationDTO userRegistrationDTO) {
 
+        // Проверка дали паролите съвпадат
+        if (!userRegistrationDTO.password().equals(userRegistrationDTO.confirmPassword())) {
+            throw new InvalidPasswordException();
+        }
+
         // Валидация на парола
         if (!isValidPassword(userRegistrationDTO.password())) {
             throw new InvalidPasswordException();

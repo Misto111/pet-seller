@@ -14,31 +14,13 @@ import java.util.UUID;
 @Component
 public class TestDataUtil {
 
-
-    @Autowired
-    private ExchangeRateRepository exchangeRateRepository;
-
     @Autowired
     private PetOfferRepository offerRepository;
 
     @Autowired
     private KindRepository kindRepository;
 
-
-
-    public void createExchangeRate(String currency, BigDecimal rate) {
-
-        exchangeRateRepository.save(
-                new ExchangeRateEntity().setCurrency(currency).setRate(rate)
-        );
-
-    }
-
-
-
-
     public PetOfferEntity createTestOffer(UserEntity owner) {
-
         KindEntity kindEntity = kindRepository.save(new KindEntity()
                 .setName("Test Kind")
                 .setBreeds(List.of(
@@ -58,17 +40,6 @@ public class TestDataUtil {
                 .setWeight(1.0)
                 .setSeller(owner);
 
-
         return offerRepository.save(offer);
-
-
-    }
-
-    public void cleanUp() {
-
-        exchangeRateRepository.deleteAll();
-        offerRepository.deleteAll();
-        kindRepository.deleteAll();
-
     }
 }

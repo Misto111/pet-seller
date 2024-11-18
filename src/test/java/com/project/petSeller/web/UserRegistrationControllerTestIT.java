@@ -44,27 +44,25 @@ class UserRegistrationControllerTestIT {
         greenMail = new GreenMail(new ServerSetup(port, host, "smtp"));
         greenMail.start();
         greenMail.setUser(username, password);
-
     }
 
     @AfterEach
     void tearDown() {
         greenMail.stop();
-
     }
 
     @Test
     void testRegistration() throws Exception {
         mockMvc.perform(
-                MockMvcRequestBuilders.post("/users/register")
-                        .param("email", "hachi@kuchev.com")
-                        .param("firstName","Hachi")
-                        .param("lastName", "Kuchev")
-                        .param("password", "topsecret")
-                        .param("confirmPassword", "topsecret")
-                        .with(csrf())
-        ).andExpect(status().is3xxRedirection())
-                .andExpect(view().name("redirect:/"));
+                        MockMvcRequestBuilders.post("/users/register")
+                                .param("email", "hachi@kuchev.com")
+                                .param("firstName", "Hachi")
+                                .param("lastName", "Kuchev")
+                                .param("password", "topsecret")
+                                .param("confirmPassword", "topsecret")
+                                .with(csrf())
+                ).andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:login"));
 
         greenMail.waitForIncomingEmail(1);
         MimeMessage[] receivedMessages = greenMail.getReceivedMessages();
@@ -75,7 +73,5 @@ class UserRegistrationControllerTestIT {
         Assertions.assertTrue(registrationMessage.getContent().toString().contains("Hachi"));
         Assertions.assertEquals(1, registrationMessage.getAllRecipients().length);
         Assertions.assertEquals("hachi@kuchev.com", registrationMessage.getAllRecipients()[0].toString());
-
     }
-
 }
