@@ -53,7 +53,6 @@ public class MonitoringAspect {
         }
 
         return returnValue;
-
     }
 
     private static WarnIfExecutionExceeds getAnnotation(ProceedingJoinPoint pjp) {

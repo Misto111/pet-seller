@@ -32,6 +32,6 @@ public class OffersController {
 
        model.addAttribute("offers", allOffers);
 
-        return "offers";
+        return "ads";
     }
 }
