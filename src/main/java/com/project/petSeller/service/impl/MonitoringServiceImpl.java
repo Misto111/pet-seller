@@ -16,7 +16,7 @@ public class MonitoringServiceImpl implements MonitoringService {
 
     public MonitoringServiceImpl(MeterRegistry meterRegistry) {
         offerSearches = Counter
-                .builder("add_search_counter")
+                .builder("ad_search_counter")
                 .description("How many searches were made on the ads")
                 .register(meterRegistry);
     }

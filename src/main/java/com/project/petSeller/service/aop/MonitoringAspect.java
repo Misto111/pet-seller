@@ -29,44 +29,4 @@ public class MonitoringAspect {
     public void logOfferSearch() {
         monitoringService.logOfferSearch();
     }
-
-    @Around("Pointcuts.warnIfExecutionExceeds()")
-    public Object logExecutionTime(ProceedingJoinPoint pjp) throws Throwable {
-
-        WarnIfExecutionExceeds annotation = getAnnotation(pjp);
-
-        long timeout = annotation.timeInMillis();
-
-        StopWatch stopWatch = new StopWatch();
-        stopWatch.start();
-
-        var returnValue = pjp.proceed();
-
-        stopWatch.stop();
-
-        if (stopWatch.getLastTaskTimeMillis() > timeout) {
-            LOGGER.warn("The method {} ran for {} millis which is more than the "
-                            + "expected {} millis.",
-                    pjp.getSignature(),
-                    stopWatch.getLastTaskTimeMillis(),
-                    timeout);
-        }
-
-        return returnValue;
-    }
-
-    private static WarnIfExecutionExceeds getAnnotation(ProceedingJoinPoint pjp) {
-
-        Method method = ((MethodSignature) pjp.getSignature()).getMethod();
-
-        try {
-            return pjp
-                    .getTarget()
-                    .getClass()
-                    .getMethod(method.getName(), method.getParameterTypes())
-                    .getAnnotation(WarnIfExecutionExceeds.class);
-        } catch (NoSuchMethodException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }

@@ -1,7 +1,6 @@
 package com.project.petSeller.service.impl;
 
 import com.project.petSeller.service.EmailService;
-import com.project.petSeller.service.aop.WarnIfExecutionExceeds;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,7 +26,6 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    @WarnIfExecutionExceeds(timeInMillis = 600)
     public void sendRegistrationEmail(String userEmail, String userName, String activationCode) {
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 

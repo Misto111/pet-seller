@@ -10,13 +10,11 @@ import com.project.petSeller.repository.PetOfferRepository;
 import com.project.petSeller.repository.UserRepository;
 import com.project.petSeller.service.MonitoringService;
 import com.project.petSeller.service.PetOfferService;
-import com.project.petSeller.service.aop.WarnIfExecutionExceeds;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-
 import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.Optional;
@@ -59,20 +57,12 @@ public class PetOfferServiceImpl implements PetOfferService {
         return newOffer.getUuid();
     }
 
-    @WarnIfExecutionExceeds(
-            timeInMillis = 1000L
-    )
-
     @Override
     public Page<PetOfferSummaryDTO> getAllOffers(Pageable pageable) {
         return offerRepository
                 .findAll(pageable)
                 .map(PetOfferServiceImpl::mapAsSummary);
     }
-
-    @WarnIfExecutionExceeds(
-            timeInMillis = 500L
-    )
 
     @Override
     public Optional<PetOfferDetailDTO> getOfferDetail(UUID offerUUID, UserDetails viewer) {

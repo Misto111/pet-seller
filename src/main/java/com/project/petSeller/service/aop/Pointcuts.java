@@ -4,8 +4,6 @@ import org.aspectj.lang.annotation.Pointcut;
 
 public class Pointcuts {
     @Pointcut("execution(* com.project.petSeller.service.PetOfferService.getAllOffers(..))")
-    public void trackOfferSearch() {}
-
-    @Pointcut("@annotation(WarnIfExecutionExceeds)")
-    public void warnIfExecutionExceeds(){}
+    public void trackOfferSearch() {
+    }
 }
