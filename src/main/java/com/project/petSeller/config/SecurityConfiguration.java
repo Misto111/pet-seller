@@ -37,6 +37,8 @@ public class SecurityConfiguration {
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                         .requestMatchers("/", "/users/**").permitAll()
                         .requestMatchers("/offers/all").permitAll()
+                        .requestMatchers("/").permitAll()
+                        .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .requestMatchers("/accessories/all").permitAll()
                         .requestMatchers("/cart/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/accessories/**").permitAll()
