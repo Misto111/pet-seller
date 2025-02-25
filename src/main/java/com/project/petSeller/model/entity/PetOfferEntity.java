@@ -20,25 +20,34 @@ public class PetOfferEntity extends BaseEntity {
     @NotNull
     @JdbcTypeCode(Types.VARCHAR)
     private UUID uuid;
+
     @NotEmpty
     private String description;
+
     @NotNull
     @ManyToOne
     private BreedEntity breed;
+
     @NotNull
     @Enumerated(EnumType.STRING)
     private ColorEnum color;
+
     @NotNull
     @Enumerated(EnumType.STRING)
     private GenderEnum gender;
+
     @ManyToOne
     private UserEntity seller;
+
     @NotEmpty
     private String imageUrl;
+
     @Positive
     private Double weight;
+
     @NotNull
     private BigDecimal price;
+
     @Min(1)
     private int years;
 
